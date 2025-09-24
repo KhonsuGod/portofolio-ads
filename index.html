@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hasil dari Khonsu Socials — Case Studies</title>
+  <meta name="description" content="Paid Social Growth + Performance Ads Portfolio" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: { cyan: '#22d3ee', violet: '#a78bfa', green: '#10b981' }
+          },
+          boxShadow: { glow: '0 10px 40px rgba(167,139,250,0.25)', glow2: '0 8px 28px rgba(34,211,238,0.25)' },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-10px)' } },
+            glow: { '0%,100%': { opacity: .3 }, '50%': { opacity: .8 } },
+            fadeup: { '0%': { opacity: 0, transform: 'translateY(12px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } }
+          },
+          animation: { float: 'float 6s ease-in-out infinite', slowglow: 'glow 5s ease-in-out infinite', fadeup: 'fadeup .7s ease forwards' }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+    .noise { background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".035"/></svg>'); }
+    .glass { backdrop-filter: blur(10px); background: linear-gradient(180deg, rgba(24,24,27,.72), rgba(24,24,27,.56)); border: 1px solid rgba(255,255,255,.08); }
+    .reveal { opacity: 0; transform: translateY(16px); }
+    .revealed { opacity: 1; transform: translateY(0); transition: all .7s cubic-bezier(.2,.7,.2,1); }
+  </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100">
+  <!-- HERO -->
+  <header class="relative isolate overflow-hidden">
+    <div class="absolute inset-0 -z-20 bg-[radial-gradient(1000px_500px_at_10%_-10%,rgba(167,139,250,.18),transparent),radial-gradient(900px_450px_at_90%_0%,rgba(34,211,238,.15),transparent)]"></div>
+    <div class="absolute inset-0 -z-10 noise"></div>
+
+    <div class="mx-auto max-w-7xl px-6 pt-14 pb-16 sm:pt-20 sm:pb-24">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="KHONSU SOSIALS.jpeg" alt="Khonsu Socials Logo" class="w-12 h-12 rounded-full ring-2 ring-white/20 shadow-glow object-cover animate-float" />
+          <span class="text-lg font-semibold tracking-tight">Khonsu Socials</span>
+        </div>
+        <a href="#contact" class="hidden sm:inline-flex items-center rounded-2xl px-4 py-2 text-sm font-semibold bg-neon-green text-zinc-900 hover:opacity-90 shadow-glow2">Konsultasi Gratis</a>
+      </div>
+
+      <div class="mt-10 text-center">
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">Hasil dari Khonsu Socials</h1>
+        <p class="mt-4 text-zinc-300 max-w-3xl mx-auto">Portofolio performa nyata: Shopee & TikTok digerakkan oleh <span class="font-semibold">Paid Social Growth</span> + <span class="font-semibold">Performance Ads</span>.</p>
+        <div class="mt-6 flex flex-wrap justify-center gap-2 text-xs text-zinc-200">
+          <span class="px-3 py-1 rounded-full border border-white/20 bg-white/10">Shopee Ads</span>
+          <span class="px-3 py-1 rounded-full border border-white/20 bg-white/10">TikTok Ads</span>
+          <span class="px-3 py-1 rounded-full border border-white/20 bg-white/10">UGC & A/B Testing</span>
+          <span class="px-3 py-1 rounded-full border border-white/20 bg-white/10">Retargeting</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- KPI SUMMARY -->
+  <section class="mx-auto max-w-7xl px-6 -mt-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass rounded-3xl p-6 shadow-glow reveal">
+        <p class="text-sm text-zinc-400">Total Spend</p>
+        <p id="kpi-spend" class="mt-2 text-3xl font-extrabold text-white">-</p>
+      </div>
+      <div class="glass rounded-3xl p-6 shadow-glow reveal">
+        <p class="text-sm text-zinc-400">Total Sales (Ads-Attributed)</p>
+        <p id="kpi-sales" class="mt-2 text-3xl font-extrabold text-white">-</p>
+      </div>
+      <div class="glass rounded-3xl p-6 shadow-glow reveal">
+        <p class="text-sm text-zinc-400">ROAS Rata-rata</p>
+        <p id="kpi-roas" class="mt-2 text-3xl font-extrabold text-white">-</p>
+      </div>
+      <div class="glass rounded-3xl p-6 shadow-glow reveal">
+        <p class="text-sm text-zinc-400">Kenaikan Followers Median</p>
+        <p id="kpi-followers" class="mt-2 text-3xl font-extrabold text-white">-</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section class="mx-auto max-w-7xl px-6 py-12">
+    <h2 class="text-2xl font-semibold">Studi Kasus</h2>
+    <p class="mt-1 text-sm text-zinc-400">Sensor nama kalau perlu. Angka otomatis dari data.</p>
+    <div id="cases" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+  </section>
+
+  <!-- CHARTS -->
+  <section class="mx-auto max-w-7xl px-6 pb-16">
+    <h3 class="text-xl font-semibold">Ringkasan Per Klien</h3>
+    <div class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="glass rounded-3xl p-6 h-64 shadow-glow reveal"><canvas id="chartCTR"></canvas></div>
+      <div class="glass rounded-3xl p-6 h-64 shadow-glow reveal"><canvas id="chartCPC"></canvas></div>
+      <div class="glass rounded-3xl p-6 h-64 shadow-glow reveal"><canvas id="chartROAS"></canvas></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="relative bg-gradient-to-br from-neon-violet/20 to-neon-cyan/20">
+    <div class="absolute inset-0 -z-10 blur-3xl opacity-40" aria-hidden="true">
+      <div class="w-72 h-72 rounded-full bg-neon-cyan/30 animate-slowglow absolute -top-10 left-10"></div>
+      <div class="w-96 h-96 rounded-full bg-neon-violet/30 animate-slowglow absolute -bottom-20 right-12"></div>
+    </div>
+    <div class="mx-auto max-w-7xl px-6 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div>
+        <h3 class="text-xl font-semibold">Siap scale toko lu?</h3>
+        <p class="opacity-80 mt-1 text-sm">Chat sekarang buat audit gratis 10 menit.</p>
+      </div>
+      <a class="inline-flex items-center rounded-2xl px-5 py-3 text-sm font-semibold bg-neon-green text-zinc-900 hover:opacity-90 shadow-glow2"
+         href="https://wa.me/6281314604337" target="_blank" rel="noopener">Chat WhatsApp</a>
+    </div>
+  </section>
+
+  <footer class="mx-auto max-w-7xl px-6 py-10 text-xs text-zinc-400 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <img src="KHONSU SOSIALS.jpeg" class="w-6 h-6 rounded-full object-cover" alt="logo" />
+      <span>© <span id="year"></span> Khonsu Socials</span>
+    </div>
+    <div class="opacity-70">Built with love & charts.</div>
+  </footer>
+
+  <script>
+    // ===== DATA PORTFOLIO =====
+    const PORTFOLIO_DATA = {
+      currency: 'IDR',
+      clients: [
+        { name: 'Shopee — Store Ajiib (Parfum)', niche: 'Parfum', period_days: 30,
+          services: ['Paid Social Growth (TikTok 8k drip 21d)', 'Shopee Search/Shop Ads', 'UGC A/B Testing'],
+          spend_idr: 7800000,
+          metrics_before: { followers: 900, ctr: 0.9, cpc: 420, cvr: 1.5, roas: 0 },
+          metrics_after: { followers: 8900, ctr: 1.8, cpc: 260, cvr: 2.8, roas: 4.4, sales_idr: 34200000 },
+          links: { shopee: 'https://shopee.co.id/storeajiib', tiktok: 'https://www.tiktok.com/@storeajiib' },
+          insights: ['UGC menurunkan CPC 38%', 'Visual parfum elegan tingkatkan CTR'] },
+        { name: 'Shopee — Toko Ajiib (Parfum)', niche: 'Parfum', period_days: 28,
+          services: ['Paid Social Growth (IG/TikTok ringan)', 'Shopee Search 70% / Shop 30%', 'Thumbnail A/B'],
+          spend_idr: 6100000,
+          metrics_before: { followers: 0, ctr: 2.0, cpc: 360, cvr: 0, roas: 3.1 },
+          metrics_after: { followers: 0, ctr: 3.0, cpc: 290, cvr: 0, roas: 4.6, sales_idr: 28700000 },
+          links: { shopee: 'https://shopee.co.id/tokoajiib', tiktok: 'https://www.tiktok.com/@tokoajiib' },
+          insights: ['Thumbnail teks besar + badge garansi ↑ CTR 45%'] },
+        { name: 'TikTok — OMOBAGS', niche: 'Tas & Leather Goods', period_days: 45,
+          services: ['TikTok Conversion Ads', 'Spark Ads', 'Retarget 7 hari', 'Paid Social Growth (drip ringan)'],
+          spend_idr: 13200000,
+          metrics_before: { followers: 2400, ctr: 1.2, cpc: 0, cvr: 1.8, roas: 0 },
+          metrics_after: { followers: 9100, ctr: 2.3, cpc: 0, cvr: 3.1, roas: 5.2, sales_idr: 68600000 },
+          links: { shopee: '', tiktok: 'https://www.tiktok.com/@omobags' },
+          insights: ['Hook unboxing & UGC kalahin konten studio', 'Retarget ATC 7 hari turunkan CPA 33%'] },
+        { name: 'TikTok — Aldo Bhamar', niche: 'Public Figure / Artis', period_days: 30,
+          services: ['Paid Social Growth (drip 10k/21d)', 'Spark Ads Awareness', 'Profil & Link Click Optimization'],
+          spend_idr: 4800000,
+          metrics_before: { followers: 15000, ctr: 0.8, cpc: 0, cvr: 0, roas: 0 },
+          metrics_after: { followers: 26000, ctr: 1.6, cpc: 0, cvr: 0, roas: 0, sales_idr: 0 },
+          links: { shopee: '', tiktok: 'https://www.tiktok.com/@aldobhamar' },
+          insights: ['Growth awal gandakan CTR dari 0.8%→1.6%', 'Profile visit naik signifikan → traffic ke link bio'] },
+        { name: 'TikTok — Growth Only (Anon)', niche: 'Creator Edukasi', period_days: 21,
+          services: ['Paid Social Growth (drip 8k/21d)', 'Optimalisasi konten & posting schedule'],
+          spend_idr: 1200000,
+          metrics_before: { followers: 600, ctr: 0, cpc: 0, cvr: 0, roas: 0 },
+          metrics_after: { followers: 8600, ctr: 0, cpc: 0, cvr: 0, roas: 0, sales_idr: 0 },
+          links: { shopee: '', tiktok: 'https://www.tiktok.com/@creator_anon' },
+          insights: ['Naik +8k followers drip natural', 'Engagement rate naik, siap diaktifkan ads ke depan'] }
+      ]
+    };
+
+    // ===== UTIL =====
+    const fmtIDR = v => new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(v||0);
+    const pct = v => `${(v??0).toFixed(1)}%`;
+
+    // ===== KPI =====
+    const totalSpend = PORTFOLIO_DATA.clients.reduce((s,c)=>s+(c.spend_idr||0),0);
+    const totalSales = PORTFOLIO_DATA.clients.reduce((s,c)=>s+(c.metrics_after?.sales_idr||0),0);
+    const avgROAS = (()=>{const r=PORTFOLIO_DATA.clients.map(c=>c.metrics_after?.roas).filter(Boolean);return r.length?r.reduce((a,b)=>a+b,0)/r.length:0})();
+    const medianFollowersGain = (()=>{const g=PORTFOLIO_DATA.clients.map(c=>(c.metrics_after?.followers??0)-(c.metrics_before?.followers??0)).sort((a,b)=>a-b);if(!g.length)return 0;const m=Math.floor(g.length/2);return g.length%2?g[m]:Math.round((g[m-1]+g[m])/2)})();
+
+    document.getElementById('kpi-spend').textContent=fmtIDR(totalSpend);
+    document.getElementById('kpi-sales').textContent=fmtIDR(totalSales);
+    document.getElementById('kpi-roas').textContent=avgROAS?`${avgROAS.toFixed(1)}x`:'-';
+    document.getElementById('kpi-followers').textContent=medianFollowersGain>0?`+${medianFollowersGain.toLocaleString('id-ID')}`:'-';
+
+    // ===== CASE CARDS =====
+    const casesEl = document.getElementById('cases');
+    PORTFOLIO_DATA.clients.forEach((c, i) => {
+      const gFollowers = (c.metrics_after.followers ?? 0) - (c.metrics_before.followers ?? 0);
+      const wrap = document.createElement('article');
+      wrap.className = 'glass rounded-3xl p-6 shadow-glow border border-white/10 reveal';
+      const badges = c.services.map(s=>`<span class='text-[11px] px-2 py-1 rounded-full bg-neon-violet/20 text-neon-violet border border-neon-violet/30'>${s}</span>`).join('');
+      const links = `
+        <div class="mt-5 flex flex-wrap gap-2">
+          ${c.links?.shopee?`<a class='inline-flex items-center px-3 py-2 rounded-xl text-sm font-semibold bg-white/10 hover:bg-white/20 border border-white/15' href='${c.links.shopee}' target='_blank' rel='noopener'>Shopee</a>`:''}
+          ${c.links?.tiktok?`<a class='inline-flex items-center px-3 py-2 rounded-xl text-sm font-semibold bg-white/10 hover:bg-white/20 border border-white/15' href='${c.links.tiktok}' target='_blank' rel='noopener'>TikTok</a>`:''}
+        </div>`;
+
+      wrap.innerHTML = `
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <div class="flex items-center gap-2 text-[11px] text-zinc-300">
+              <span class="px-2 py-0.5 rounded-full bg-white/10 border border-white/15">${c.name.split('—')[0].trim()}</span>
+              <span class="px-2 py-0.5 rounded-full bg-white/10 border border-white/15">${c.niche}</span>
+            </div>
+            <h4 class="text-xl font-bold mt-2 text-white">${c.name}</h4>
+            <p class="text-sm text-zinc-400">${c.period_days} hari</p>
+          </div>
+          <span class="text-xs px-2 py-1 rounded-full bg-white/10 border border-white/15">Case #${i+1}</span>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-2">${badges}</div>
+        <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
+          <div class="rounded-xl bg-white/10 border border-white/15 p-3"><p class="text-zinc-400">Spend</p><p class="text-white text-2xl font-extrabold">${fmtIDR(c.spend_idr||0)}</p></div>
+          <div class="rounded-xl bg-white/10 border border-white/15 p-3"><p class="text-zinc-400">Sales (Ads)</p><p class="text-white text-2xl font-extrabold">${fmtIDR(c.metrics_after?.sales_idr||0)}</p></div>
+          <div class="rounded-xl bg-white/10 border border-white/15 p-3"><p class="text-zinc-400">CTR</p><p class="text-white text-2xl font-extrabold">${pct(c.metrics_after?.ctr ?? c.metrics_before?.ctr)}</p></div>
+          <div class="rounded-xl bg-white/10 border border-white/15 p-3"><p class="text-zinc-400">CPC</p><p class="text-white text-2xl font-extrabold">${c.metrics_after?.cpc ? 'Rp'+(c.metrics_after.cpc).toLocaleString('id-ID') : '—'}</p></div>
+          <div class="rounded-xl bg-white/10 border border-white/15 p-3"><p class="text-zinc-400">ROAS</p><p class="text-white text-2xl font-extrabold">${c.metrics_after?.roas ? c.metrics_after.roas+'x' : '—'}</p></div>
+          <div class="rounded-xl bg-white/10 border border-white/15 p-3"><p class="text-zinc-400">Followers</p><p class="text-white text-2xl font-extrabold">${(c.metrics_before.followers??0).toLocaleString('id-ID')} → ${(c.metrics_after.followers??0).toLocaleString('id-ID')} ${gFollowers>0?`(<span class='text-neon-cyan font-bold'>+${gFollowers.toLocaleString('id-ID')}</span>)`:''}</p></div>
+        </div>
+        ${c.insights?.length?`<div class="mt-5 border-l-2 border-neon-cyan/60 pl-4"><p class="text-xs uppercase tracking-wide text-zinc-400">Insight</p><ul class="mt-1 list-disc list-inside text-sm text-zinc-200">${c.insights.map(i=>`<li>${i}</li>`).join('')}</ul></div>`:''}
+        ${links}
+      `;
+      casesEl.appendChild(wrap);
+    });
+
+    // ===== CHARTS =====
+    const labels = PORTFOLIO_DATA.clients.map(c => c.name);
+    const dataCTR = PORTFOLIO_DATA.clients.map(c => (c.metrics_after?.ctr ?? c.metrics_before?.ctr) || 0);
+    const dataCPC = PORTFOLIO_DATA.clients.map(c => (c.metrics_after?.cpc ?? c.metrics_before?.cpc) || 0);
+    const dataROAS = PORTFOLIO_DATA.clients.map(c => (c.metrics_after?.roas ?? 0));
+
+    const baseOpt = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,.08)' }, ticks: { color: '#d4d4d8' } }, x: { ticks: { color: '#a1a1aa' }, grid: { display: false } } } };
+
+    new Chart(document.getElementById('chartCTR'), { type: 'bar', data: { labels, datasets: [{ label: 'CTR', data: dataCTR }] }, options: baseOpt });
+    new Chart(document.getElementById('chartCPC'), { type: 'bar', data: { labels, datasets: [{ label: 'CPC', data: dataCPC }] }, options: baseOpt });
+    new Chart(document.getElementById('chartROAS'), { type: 'bar', data: { labels, datasets: [{ label: 'ROAS', data: dataROAS }] }, options: baseOpt });
+
+    // YEAR
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    // REVEAL ON SCROLL
+    const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); } }); }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
